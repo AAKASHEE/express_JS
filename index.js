@@ -48,17 +48,14 @@ app.put('/cheese/:id', (req, res) => {
 })
 
 // delete tea
-    
 app.delete('/cheese/:id', (req, res) => {
-    console.log('deleted')
-    console.log(req.params.id)
     const index = chessBUzz.findIndex(t => t.id === parseInt(req.params.id))
     if (index === -1) {
         return res.status(404).send("Teas not found")
         
     }
-    chessBUzz.slice(index, 1)
-    return res.status(204).send("deleted")
+    const deletedTea = chessBUzz.splice(index, 1)[0];  // Remove element at index and return it
+    return res.status(200).send(deletedTea); // Send the deleted tea object in the response
 })
 
 
